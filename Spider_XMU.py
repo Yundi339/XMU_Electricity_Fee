@@ -27,16 +27,13 @@ def changeData(data, html):
 # @param drlou 园区代号
 # @param txtRoomid 宿舍
 def query(drxiaoqu, drlou, txtRoomid):
-    # initial
     req = requests.session()
     data = {}
-
     response = req.get(url=url, headers=headers)  # 第一次请求
     html = etree.HTML(response.content.decode())
     # 获取园区信息
     drxiaoqu_value_list = html.xpath('//select[@name="drxiaoqu"]/option/@value')
     drxiaoqu_name_list = html.xpath('//select[@name="drxiaoqu"]/option/text()')
-    # 寻找校区是否匹配
     try:
         drxiaoqu_index = drxiaoqu_name_list.index(drxiaoqu)
     except:
@@ -48,7 +45,6 @@ def query(drxiaoqu, drlou, txtRoomid):
     # 获取楼道信息
     drlou_value_list = html.xpath('//select[@name="drlou"]/option/@value')
     drlou_name_list = html.xpath('//select[@name="drlou"]/option/text()')
-    # 寻找园区是否匹配
     try:
         drlou_index = drlou_name_list.index(drlou)
     except:
@@ -58,13 +54,12 @@ def query(drxiaoqu, drlou, txtRoomid):
     data['txtRoomid'] = txtRoomid
     response = req.post(url=url, headers=headers, data=data)  # 第三次请求
     html = etree.HTML(response.content.decode())
-    # 获取剩余电费
     result = html.xpath('//label[@class="dxeBase_Aqua" and @id="lableft"]/text()')
     return result[0] if len(result) == 1 else "ERROR txtRoomid or SERVICE BOOM!"
 
-
-xiaoqu = '本部南光区'
-yuanqu = '南光7'
-sushe = '0301'
-print(xiaoqu + ' ' + yuanqu + ' ' + sushe + ':', end='    ')
-print(query(xiaoqu, yuanqu, sushe))
+if __name__ == '__main__':
+    xiaoqu = '本部南光区'
+    yuanqu = '南光7'
+    sushe = '0301'
+    print(xiaoqu + ' ' + yuanqu + ' ' + sushe + ':', end='    ')
+    print(query(xiaoqu, yuanqu, sushe))
