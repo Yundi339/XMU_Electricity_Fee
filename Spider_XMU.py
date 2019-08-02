@@ -62,9 +62,10 @@ def query(drxiaoqu, drlou, txtRoomid):
     result = html.xpath('//label[@class="dxeBase_Aqua" and @id="lableft"]/text()')
     return result[0] if len(result) == 1 else "ERROR txtRoomid or SERVICE BOOM!"
 
+
 if __name__ == '__main__':
     xiaoqu = '本部南光区'
     yuanqu = '南光7'
-    sushe = '0301'
+    sushe = '0201'
     print(xiaoqu + ' ' + yuanqu + ' ' + sushe + ':', end='    ')
     print(query(xiaoqu, yuanqu, sushe))
