@@ -53,7 +53,6 @@ def query(drxiaoqu, drlou, txtRoomid):
     data['drlou'] = drlou_value_list[drlou_index]
     data['txtRoomid'] = txtRoomid
 
-    #
     # data['__CALLBACKID'] = 'dxgvElec'
     # data['__CALLBACKPARAM'] = 'c0:GB|20;12|PAGERONCLICK3|PN4;'
 
