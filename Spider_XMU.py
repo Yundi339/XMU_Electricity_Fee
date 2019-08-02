@@ -52,6 +52,11 @@ def query(drxiaoqu, drlou, txtRoomid):
     changeData(data, html)
     data['drlou'] = drlou_value_list[drlou_index]
     data['txtRoomid'] = txtRoomid
+
+    #
+    # data['__CALLBACKID'] = 'dxgvElec'
+    # data['__CALLBACKPARAM'] = 'c0:GB|20;12|PAGERONCLICK3|PN4;'
+
     response = req.post(url=url, headers=headers, data=data)  # 第三次请求
     html = etree.HTML(response.content.decode())
     result = html.xpath('//label[@class="dxeBase_Aqua" and @id="lableft"]/text()')
