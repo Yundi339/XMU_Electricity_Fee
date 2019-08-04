@@ -6,7 +6,7 @@ from time import time, sleep
 from multiprocessing import Process, Queue, Lock
 import os, random
 
-save_path = 'E:/img_test/'
+save_path = 'img_test/'
 
 home = "https://movie.douban.com"  # 修改访问服务器主页
 
@@ -67,7 +67,6 @@ def getAll(url_queue, lock):
             img = requests.get(src, headers=headers).content
             print("Downloading: " + file_name + '    ' + src)
             imwrite(save_path + file_name, img)
-        sleep(random.randrange(2, 6))
 
 
 def imwrite(path, img):
@@ -75,6 +74,7 @@ def imwrite(path, img):
         with open(path, "wb") as f:
             f.write(img)
             f.close()
+        sleep(random.randrange(2, 6))
     except:
         print("==================== SAVE ERROR:%s ====================" % path)
 
